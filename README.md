@@ -1,6 +1,6 @@
 # dir-size
 
-`dir-size` is a crate to calculate directory size parallelly using `rayon`.
+`dir-size` is a crate that calculates directory size in parallel using `rayon`.
 
 ## Usage
 
