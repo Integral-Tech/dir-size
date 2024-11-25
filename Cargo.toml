@@ -1,0 +1,14 @@
+[package]
+name = "dir-size"
+version = "0.1.0"
+edition = "2021"
+license = "MPL-2.0"
+description = "Parallelized directory size calculation"
+homepage = "https://codeberg.org/Integral/dir-size"
+repository = "https://codeberg.org/Integral/dir-size"
+readme = "README.md"
+keywords = ["directory", "size", "file", "filesystem"]
+categories = ["filesystem", "concurrency"]
+
+[dependencies]
+rayon = "1.10.0"
