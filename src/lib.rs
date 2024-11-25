@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Integral <integral@member.fsf.org>
+//
+// SPDX-License-Identifier: MPL-2.0
+
 use rayon::prelude::*;
 use std::{fs, io, path::Path};
 
