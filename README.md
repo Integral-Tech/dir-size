@@ -1,5 +1,7 @@
 # dir-size
 
+[![status-badge](https://ci.codeberg.org/api/badges/13933/status.svg)](https://ci.codeberg.org/repos/13933)
+
 `dir-size` is a crate that calculates directory size in parallel using `rayon`.
 
 ## Usage
