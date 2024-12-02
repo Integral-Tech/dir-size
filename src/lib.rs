@@ -40,7 +40,7 @@ pub fn get_size_in_human_bytes(path: &Path) -> io::Result<String> {
 }
 
 fn get_dir_size(path: &Path) -> io::Result<u64> {
-    let entries: Vec<_> = fs::read_dir(&path)?.collect();
+    let entries: Vec<_> = fs::read_dir(path)?.collect();
 
     let total = entries
         .par_iter()
@@ -60,11 +60,11 @@ fn get_dir_size(path: &Path) -> io::Result<u64> {
 fn convert_to_human_bytes(size_in_bytes: u64) -> String {
     match size_in_bytes {
         ..KIBIBYTE => format!("{size_in_bytes} bytes"),
-        ..MEBIBYTE => format!("{} KiB", size_in_bytes / KIBIBYTE),
-        ..GIBIBYTE => format!("{} MiB", size_in_bytes / MEBIBYTE),
-        ..TEBIBYTE => format!("{} GiB", size_in_bytes / GIBIBYTE),
-        ..PEBIBYTE => format!("{} TiB", size_in_bytes / TEBIBYTE),
-        ..EXBIBYTE => format!("{} PiB", size_in_bytes / PEBIBYTE),
+        KIBIBYTE..MEBIBYTE => format!("{} KiB", size_in_bytes / KIBIBYTE),
+        MEBIBYTE..GIBIBYTE => format!("{} MiB", size_in_bytes / MEBIBYTE),
+        GIBIBYTE..TEBIBYTE => format!("{} GiB", size_in_bytes / GIBIBYTE),
+        TEBIBYTE..PEBIBYTE => format!("{} TiB", size_in_bytes / TEBIBYTE),
+        PEBIBYTE..EXBIBYTE => format!("{} PiB", size_in_bytes / PEBIBYTE),
         _ => format!("{} EiB", size_in_bytes / EXBIBYTE),
     }
 }
