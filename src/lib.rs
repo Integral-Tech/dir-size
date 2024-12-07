@@ -69,16 +69,14 @@ fn get_dir_size(path: &Path) -> io::Result<u64> {
 }
 
 fn convert_to_human_bytes(size_in_bytes: u64, abbr: bool) -> String {
-    const UNITS: [((u64, u64), &str, &str); 6] = [
+    for ((min_bytes, max_bytes), abbr_unit, full_unit) in [
         ((1, KIBIBYTE), "B", "Bytes"),      // Bytes
         ((KIBIBYTE, MEBIBYTE), "K", "KiB"), // KiB
         ((MEBIBYTE, GIBIBYTE), "M", "MiB"), // MiB
         ((GIBIBYTE, TEBIBYTE), "G", "GiB"), // GiB
         ((TEBIBYTE, PEBIBYTE), "T", "TiB"), // TiB
         ((PEBIBYTE, EXBIBYTE), "P", "PiB"), // PiB
-    ];
-
-    for ((min_bytes, max_bytes), abbr_unit, full_unit) in UNITS {
+    ] {
         if size_in_bytes < max_bytes {
             return format!(
                 "{} {}",
